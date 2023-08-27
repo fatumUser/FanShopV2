@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/styles.css" />
+    <title>Basket</title>
+  </head>
+  <style></style>
+  <body>
+
+      <header class="header">
+        <a href="/main" class="punct-main-page">
+          <div>
+            <p class="text-main-page">Главная страница</p>
+          </div>
+        </a>
+        <p th:text="${user}" style="margin-left: 20px; color: green;"></p>
+        <div class="header__div-list">
+          <!-- <a href="/registration" class="punct-log">
+              <div>
+                <p class="text-log">Регистрация</p>
+              </div>
+            </a> -->
+          <a href="/login" class="punct-log">
+            <div>
+              <div style="display: flex; width: 100%">
+                <img class="punct__img" src="/img/login.svg" />
+              </div>
+              <p class="text-log">Войти</p>
+            </div>
+          </a>
+          <a href="/basket" class="punct-basket">
+            <div class="header__div-list__punct">
+              <div style="display: flex; width: 100%">
+                <img class="punct__img" src="/img/basket.svg" />
+              </div>
+              <p class="text-basket">Корзина</p>
+            </div>
+          </a>
+        </div>
+      </header>
+
+    <div style="display: flex; width: 100%">
+      <section class="line-products">
+      <div th:each="product: ${products}" class="product">
+        <a style="text-decoration: none" href="">
+          <img
+            alt="Кроссы"
+            th:src="${product.img}"
+            class="img-product"
+          />
+          <div style="display: flex">
+            <p class="product__price" th:text="${product.price}"></p>
+            <p class="product__price">₽</p>
+          </div>
+
+          <a href="" class="product__text" th:text="${product.title}">
+            <p th:text="${product.title}"></p>
+          </a>
+        </a>
+      </div>
+      </section>
+    </div>
+
+    <p class="text">Сообщения :</p>
+
+    <form action="filter" method="post">
+      <input style="margin-bottom: 20px" type="text" name="filter" />
+      <button type="submit">Найти</button>
+    </form>
+
+    <div style="display: flex" th:each="message: ${messages}">
+      <div
+        style="
+          display: flex;
+          width: 40px;
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+          margin-right: 10px;
+        "
+      >
+        <!-- <p style="margin: 0 auto; font-weight: 700; font-size: 18px">ID</p> -->
+        <p
+          style="font-weight: 700; margin: 0 auto; margin-bottom: 20px"
+          th:text="${message.id}"
+        ></p>
+      </div>
+      <div
+        style="
+          display: flex;
+          width: 100px;
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+          margin-right: 10px;
+        "
+      >
+        <!--<p style="margin: 0 auto; font-weight: 700; font-size: 18px">Name</p>-->
+        <p
+          style="margin-right: 20px; margin: 0 auto; margin-bottom: 20px"
+          th:text="${message.text}"
+        ></p> 
+      </div>
+      <div
+        style="
+          display: flex;
+          width: 150px;
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+        "
+      >
+        <!--  <p style="margin: 0 auto; font-weight: 700; font-size: 18px">Password</p> -->
+        <p
+          style="margin: 0 auto; margin-bottom: 20px"
+          th:text="${message.tag}"
+        ></p>
+      </div>
+      <div
+              style="
+          display: flex;
+          width: 150px;
+          border-left: 1px solid #000;
+          border-right: 1px solid #000;
+        "
+      >
+        <!--  <p style="margin: 0 auto; font-weight: 700; font-size: 18px">Password</p> -->
+        <p
+                style="margin: 0 auto; margin-bottom: 20px"
+                th:text="${message.NameAuthor}"
+        ></p>
+      </div>
+    </div>
+
+      <a style="margin: 30px" href="/" class="button7">Оплатить все</a>
+
+    </div>
+
+
+
+
+
+    <a href="/main">Главная</a>
+  </body>
+</html>

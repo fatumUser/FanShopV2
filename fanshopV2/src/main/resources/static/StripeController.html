@@ -1,0 +1,29 @@
+package com.example.project_2.controllers.StripeController;
+
+import com.example.project_2.entitys.stripeEntitys.StripeChargeDto;
+import com.example.project_2.entitys.stripeEntitys.StripeTokenDto;
+import com.example.project_2.services.StripeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class StripeController {
+
+@Autowired
+private StripeService stripeService;
+
+@PostMapping("/cardToken")
+@ResponseBody
+public StripeTokenDto createCardToken(@RequestBody StripeTokenDto model) {
+return stripeService.createCardToken(model);
+}
+
+@PostMapping("/charge")
+@ResponseBody
+public StripeChargeDto charge(@RequestBody StripeChargeDto model) {
+return stripeService.charge(model);
+}
+}
